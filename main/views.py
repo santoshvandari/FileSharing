@@ -13,5 +13,8 @@ def home(request):
 def custom404(request):
     return render(request,'404.html')
 
-def fileDownload(request):
-    pass
+def fileDownload(request,slug):
+    if not slug:
+        return redriect("/404")
+    if slug:
+        pass
