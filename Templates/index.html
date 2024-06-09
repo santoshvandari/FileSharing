@@ -13,26 +13,18 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Download</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/download">Download</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section>
+        <section id="fileupload">
             <h2>Upload File</h2>
             <form action="upload.php" method="post" enctype="multipart/form-data">
                 <input type="file" name="file">
                 <button type="submit" name="submit">Upload</button>
             </form>
-        </section>
-        <section>
-            <h2>Download File</h2>
-            <ul>
-                <li><a href="#">File 1</a></li>
-                <li><a href="#">File 2</a></li>
-                <li><a href="#">File 3</a></li>
-            </ul>
         </section>
     </main>
 </body>
