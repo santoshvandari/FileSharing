@@ -5,9 +5,9 @@ from main.slugGenerator import slug_generator,fileid
 
 class SharedFiles(models.Model):
     file = models.FileField(upload_to='uploads/')
-    filename=models.CharField(max_length=100)
+    filename=models.CharField(max_length=100,blank=False)
     slug=models.SlugField(max_length=100, unique=True)
-    fileid=models.CharField(max_length=100, unique=True,blank=False)
+    fileid=models.CharField(max_length=100, unique=True)
     upload_time = models.DateTimeField(auto_now_add=True)
     expiration_time = models.DateTimeField()
 
