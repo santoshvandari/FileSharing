@@ -6,5 +6,6 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('home/',views.home,name='home'),
     path('404/',views.custom404,name='custom404'),
-    path('d/<slug>',views.fileDownload,name='download'),
+    path('d/<slug>',views.fileDownload,name='filedownload'),
+    path('download/',views.download,name='download'),
 ]
