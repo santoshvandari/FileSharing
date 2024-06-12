@@ -17,7 +17,7 @@ def home(request):
             SharedFiles.objects.create(file=file,filename=filename,slug=slug,fileid=fileno)
             successdata={
                 'status':'success',
-                'slug':slug,
+                'slug':'http://127.0.0.1:8000/d/'+slug,
                 'fileid':fileno
             }
             print(successdata)

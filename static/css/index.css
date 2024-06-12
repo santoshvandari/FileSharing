@@ -125,8 +125,6 @@ div.url{
     flex-direction: column;
     border-radius: 10px;
 }
-
-/* create the button for it  */
 div.url span{
     font-size: 20px;
     font-weight: 500;
@@ -139,21 +137,5 @@ div.url span{
 div.url span:hover{
     background: #0056b3;
 }
-
-
-
-
-/* div.message p url{
-    color: #fff;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 500;
-    transition: color 0.3s;
-} */
-/* Success Message Start Here */
-
-
-
-
-
+/* Success Message Ends Here */
 /* Main Section Ends Here */
