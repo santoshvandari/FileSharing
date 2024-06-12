@@ -7,11 +7,15 @@ def home(request):
     if request.method=='POST':
         file=request.FILES['file']
         filename=file.name
+        if '.' in filename:
+            filename=filename.split('.')[0]
         slug=slug_generator(filename)
-        fileid=fileid()
-        print(slug,fileid)
-        SharedFiles.objects.create(file=file,filename=filename,slug=slug,fileid=fileid)
-        return render(request,'index.html',{'slug':slug})
+        fileno=fileid()
+        print(slug,fileno)
+        print(filename)
+        
+        SharedFiles.objects.create(file=file,filename=filename,slug=slug,fileid=fileno)
+        # return render(request,'index.html',{'slug':slug})
     return render(request,'index.html')
 
 

@@ -22,6 +22,7 @@
         <section id="fileupload">
             <h2>Upload File</h2>
             <form action="#" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <input type="file" name="file">
                 <button type="submit" name="submit">Upload</button>
             </form>

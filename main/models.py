@@ -1,13 +1,15 @@
 from django.db import models
 from main.slugGenerator import slug_generator,fileid
+from django.utils import timezone
+from datetime import timedelta
 
 # Create your models here.
 
 class SharedFiles(models.Model):
     file = models.FileField(upload_to='uploads/')
-    filename=models.CharField(max_length=100,blank=False)
-    slug=models.SlugField(max_length=100, unique=True)
-    fileid=models.CharField(max_length=100, unique=True)
+    filename=models.TextField(blank=False)
+    slug=models.SlugField(unique=True,blank=False)
+    fileid=models.CharField(max_length=100, primary_key=True)
     upload_time = models.DateTimeField(auto_now_add=True)
     expiration_time = models.DateTimeField()
 
