@@ -1,10 +1,17 @@
 from django.shortcuts import render,HttpResponse,redirect
 from main.models import SharedFiles
+from main.slugGenerator import slug_generator,fileid
 
 # Create your views here.
 def home(request):
     if request.method=='POST':
-        pass
+        file=request.FILES['file']
+        filename=file.name
+        slug=slug_generator(filename)
+        fileid=fileid()
+        print(slug,fileid)
+        SharedFiles.objects.create(file=file,filename=filename,slug=slug,fileid=fileid)
+        return render(request,'index.html',{'slug':slug})
     return render(request,'index.html')
 
 

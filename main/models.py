@@ -12,8 +12,6 @@ class SharedFiles(models.Model):
     expiration_time = models.DateTimeField()
 
     def save(self, *args, **kwargs):
-        self.slug=slug_generator(self.title)
-        self.fileid=fileid()
         if not self.expiration_time:
             self.expiration_time = timezone.now() + timedelta(hours=24)
         super().save(*args, **kwargs)

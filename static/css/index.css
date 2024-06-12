@@ -9,11 +9,74 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 /* Header Section Start Here */
-
-
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 200px;
+    background-color: #2C3E50;
+}
+header div.logo h1{
+    color: #fff;
+}
+nav{
+    display: flex;
+}
+nav ul{
+    display: flex;
+    list-style: none;
+}
+nav ul li{
+    margin: 0 10px;
+}
+nav ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+nav ul li a:hover{
+    color: #3498DB;
+}
 /* Header Section Ends Here */
 /* Main Section Start Here */
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 /* Upload Section Start Here  */
+section#fileupload{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+section#fileupload h2{
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 500;
+}
+section#fileupload form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+form input[type="file"]{
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
 
 
 
