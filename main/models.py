@@ -17,8 +17,5 @@ class SharedFiles(models.Model):
         if not self.expiration_time:
             self.expiration_time = timezone.now() + timedelta(hours=24)
         super().save(*args, **kwargs)
-
-
-
     def is_expired(self):
-        return timezone.now() > self.expiration_time
+        return self.expiration_time < timezone.now()
