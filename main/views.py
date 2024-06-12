@@ -13,9 +13,23 @@ def home(request):
         fileno=fileid()
         print(slug,fileno)
         print(filename)
-        
-        SharedFiles.objects.create(file=file,filename=filename,slug=slug,fileid=fileno)
-        # return render(request,'index.html',{'slug':slug})
+        try:
+            SharedFiles.objects.create(file=file,filename=filename,slug=slug,fileid=fileno)
+            successdata={
+                'status':'success',
+                'slug':slug,
+                'fileid':fileno
+            }
+            print(successdata)
+            return render(request,'index.html',successdata)
+        except Exception as ex:
+            print(ex)
+            successdata={
+                'status':'error',
+                'message':'Something went wrong.'
+            }
+            print(successdata)
+            return render(request,'index.html',successdata)
     return render(request,'index.html')
 
 

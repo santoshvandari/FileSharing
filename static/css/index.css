@@ -43,42 +43,114 @@ nav ul li a:hover{
 /* Main Section Start Here */
 main{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     height: 100vh;
+    flex-direction: column;
+    gap: 50px;
 }
 /* Upload Section Start Here  */
-section#fileupload{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #fff;
+#fileupload {
+    background: #fff;
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
 }
-section#fileupload h2{
+#fileupload h2 {
     margin-bottom: 20px;
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 24px;
+    color: #333;
 }
-section#fileupload form{
+#fileupload form{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
-form input[type="file"]{
-    margin-bottom: 20px;
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #ccc;
+#fileupload input[type="file"]{
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
     border-radius: 5px;
-    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+#fileupload button[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 150px;
+}
+#fileupload button[type="submit"]:hover {
+    background-color: #218838;
+}
+/* Upload Section Ends Here  */
+/* Success Message Start Here */
+section#successMessage{
+    background: #28a745;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+div.status p{
+    font-size: 16px;
+    font-weight: 500;
+
+}
+div.message p{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 5;
+}
+
+div.url{
+    background:#344C64;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+/* create the button for it  */
+div.url span{
+    font-size: 20px;
+    font-weight: 500;
+    background: #007bff;
+    padding: 5px 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+div.url span:hover{
+    background: #0056b3;
 }
 
 
+
+
+/* div.message p url{
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+} */
+/* Success Message Start Here */
 
 
 
