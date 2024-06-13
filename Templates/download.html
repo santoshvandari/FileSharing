@@ -22,8 +22,10 @@
         <section id="filedownload">
             <h2>Downlaod File</h2>
             <form action="#" method="post">
+                {% csrf_token %}
                 <label for="download">Enter a File Code: </label>
-                <input type="text" name="filecode" id="download" placeholder="Enter a File Code"/>
+                <input type="text" name="fileid" id="download" placeholder="Enter a File Code"/>
+                <button type="submit">Download</button>
             </form>
         </section>
     </main>

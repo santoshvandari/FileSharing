@@ -35,6 +35,31 @@ def home(request):
 
 
 def download(request):
+    if request.method=="POST":
+        fileid = (request.POST.get("fileid")).strip()
+        print(fileid)
+        if not fileid:
+            return redirect("/404")
+        if fileid:
+            try:
+                file=SharedFiles.objects.filter(fileid=fileid).first()
+            except Exception as ex:
+                print(ex)
+                return redirect("/404")
+            if not file:
+                return redirect("/404")
+            elif file.is_expired():
+                # remove from teh datbase and the file from the server
+                if(RemoveFile(file.filename)):
+                    file.delete()
+                return redirect("/404")
+            else:
+                file.file.open()
+                response=HttpResponse(file.file, content_type='application/force-download')
+                response['Content-Disposition'] = 'attachment; filename=%s' % file.filename
+                return response
+        else:
+            return redirect("/404")
     return render(request,'download.html')
 
 
