@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Sharing</title>
-    <link rel='stylesheet' href="/static/css/index.css"/>
-    <script defer src="/static/js/index.js"></script>
+    <link rel='stylesheet' href="/static/css/downloadfile.css"/>
+    <!-- <script defer src="/static/js/index.js"></script> -->
 </head>
 <body>
     <header>
@@ -20,10 +20,27 @@
         </nav>
     </header>
     <main>
+    {% if file %}
         <section id="fileupload">
             <h2>Files</h2>
-           
+            <div class="filesWrapper">
+                <ul>
+                        <li>
+                            {{file.filename}}
+                        </li>
+                </ul>
+            </div>  
+            <div class="btnWrapper">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                   <input type="text" name="slug" value="{{file.slug}}" hidden>
+                   <button type="submit">Download</button>
+                </form>
+            </div>
         </section>
+        {% else %}
+        
+        {% endif %}
     </main>
 </body>
 </html>
