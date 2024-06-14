@@ -49,3 +49,12 @@ main{
     flex-direction: column;
     gap: 50px;
 }
+
+section#fileupload{
+    text-align: center;
+}
+section h2{
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
