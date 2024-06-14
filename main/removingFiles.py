@@ -16,3 +16,9 @@ def RemoveFile(filename):
             return False
     else:
         return True
+    return True
+
+
+# Remove all the Expired Files 
+def RemoveAllExpiredFiles():
+    pass

@@ -19,11 +19,11 @@
         </nav>
     </header>
     <main>
-        <section id="filedownload">
-            <h2>Downlaod File</h2>
+        <section id="fileDownload">
+            <h2>Download File</h2>
             <form action="#" method="post">
                 {% csrf_token %}
-                <label for="download">Enter a File Code: </label>
+                <label for="download">Enter a File ID: </label>
                 <input type="text" name="fileid" id="download" placeholder="Enter a File Code"/>
                 <button type="submit">Download</button>
             </form>
