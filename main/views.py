@@ -3,7 +3,7 @@ from main.models import SharedFiles
 from main.slugGenerator import slug_generator,fileid
 import os
 from core.settings import BASE_DIR
-from main.removingFiles import RemoveFile
+from main.removingFiles import RemoveAllExpiredFiles
 # Create your views here.
 def home(request):
     if request.method=='POST':
@@ -39,7 +39,7 @@ def download(request):
         fileid = (request.POST.get("fileid")).strip()
         print(fileid)
         if not fileid:
-            return redirect("/404")
+            return render(request,'download.html','error: File ID Cannot Be Empty')
         if fileid:
             try:
                 file=SharedFiles.objects.filter(fileid=fileid).first()
@@ -50,7 +50,7 @@ def download(request):
                 return redirect("/404")
             elif file.is_expired():
                 # remove from teh datbase and the file from the server
-                if(RemoveFile(file.filename)):
+                if(RemoveAllExpiredFiles()):
                     file.delete()
                 return redirect("/404")
             else:
@@ -82,7 +82,7 @@ def fileDownload(request,slug):
                 return redirect("/404")
             elif file.is_expired():
                 # remove from teh datbase and the file from the server
-                if(RemoveFile(file.filename)):
+                if(RemoveAllExpiredFiles()):
                     file.delete()
                 return redirect("/404")
             else:
@@ -103,7 +103,7 @@ def fileDownload(request,slug):
             print("Not FIle")
             return redirect("/404")
         elif file.is_expired():
-            if(RemoveFile(file.filename)):
+            if(RemoveAllExpiredFiles()):
                     file.delete()
             return redirect("/404")
         else:
