@@ -3,6 +3,7 @@ from main.models import SharedFiles
 from main.slugGenerator import slug_generator,fileid
 import os
 from core.settings import BASE_DIR
+from main.removingFiles import RemoveAllExpiredFiles
 # Create your views here.
 def home(request):
     if request.method=='POST':
@@ -34,6 +35,31 @@ def home(request):
 
 
 def download(request):
+    if request.method=="POST":
+        fileid = (request.POST.get("fileid")).strip()
+        print(fileid)
+        if not fileid:
+            return render(request,'download.html','error: File ID Cannot Be Empty')
+        if fileid:
+            try:
+                file=SharedFiles.objects.filter(fileid=fileid).first()
+            except Exception as ex:
+                print(ex)
+                return redirect("/404")
+            if not file:
+                return redirect("/404")
+            elif file.is_expired():
+                # remove from teh datbase and the file from the server
+                if(RemoveAllExpiredFiles()):
+                    file.delete()
+                return redirect("/404")
+            else:
+                file.file.open()
+                response=HttpResponse(file.file, content_type='application/force-download')
+                response['Content-Disposition'] = 'attachment; filename=%s' % file.filename
+                return response
+        else:
+            return redirect("/404")
     return render(request,'download.html')
 
 
@@ -42,23 +68,51 @@ def custom404(request):
     return render(request,'404.html')
 
 def fileDownload(request,slug):
+    if request.method=='POST':
+        slug=request.POST.get('slug')
+        print(slug)
+        if slug:
+            try:
+                file=SharedFiles.objects.filter(slug=slug).first()
+            except Exception as ex:
+                print(ex)
+                return redirect("/404")
+
+            if not file:
+                return redirect("/404")
+            elif file.is_expired():
+                # remove from teh datbase and the file from the server
+                if(RemoveAllExpiredFiles()):
+                    file.delete()
+                return redirect("/404")
+            else:
+                file.file.open()
+                response=HttpResponse(file.file, content_type='application/force-download')
+                response['Content-Disposition'] = 'attachment; filename=%s' % file.filename
+                return response
+        else:
+            return redirect("/404")
+
+
+    print(slug)
     if not slug:
         return redriect("/404")
     if slug:
         file=SharedFiles.objects.filter(slug=slug).first()
         if not file:
+            print("Not FIle")
             return redirect("/404")
         elif file.is_expired():
-            # remove from teh datbase and the file from the server
-            file.delete()
-            if os.path.exists(BASE_DIR+"/media/uploads/"+str(file.filename)):
-                print(BASE_DIR+"/media/uploads/"+str(file.filename))
-                os.remove(BASE_DIR+"/media/uploads/"+str(file.filename))
+            if(RemoveAllExpiredFiles()):
+                    file.delete()
+            return redirect("/404")
         else:
-            file.file.open()
-            response=HttpResponse(file.file, content_type='application/force-download')
-            response['Content-Disposition'] = 'attachment; filename=%s' % file.filename
-            return response
+            print(BASE_DIR / "/media/uploads/" / file.filename)
+            return render(request,'downloadfile.html',{'file':file})
+            # file.file.open()
+            # response=HttpResponse(file.file, content_type='application/force-download')
+            # response['Content-Disposition'] = 'attachment; filename=%s' % file.filename
+            # return response
     else:
         return redirect("/404")
 

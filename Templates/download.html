@@ -19,11 +19,16 @@
         </nav>
     </header>
     <main>
-        <section id="filedownload">
-            <h2>Downlaod File</h2>
+        <section id="fileDownload">
+            <h2>Download File</h2>
+            {% if error %}
+            <div class="error">{{error}}</div>
+            {% endif %}
             <form action="#" method="post">
-                <label for="download">Enter a File Code: </label>
-                <input type="text" name="filecode" id="download" placeholder="Enter a File Code"/>
+                {% csrf_token %}
+                <label for="download">Enter a File ID: </label>
+                <input type="text" name="fileid" id="download" placeholder="Enter a File ID"/>
+                <button type="submit">Download</button>
             </form>
         </section>
     </main>
