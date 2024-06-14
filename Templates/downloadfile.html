@@ -19,28 +19,27 @@
         </nav>
     </header>
     <main>
-    <!-- {% if file %} -->
+    {% if file %}
         <section id="fileDownload">
             <h2>Files</h2>
             <div class="filesWrapper">
                 <ul>
                         <li>
-                            Santosh Bhandari png
-                            <!-- {{file.filename}} -->
+                            {{file.filename}}
                         </li>
                 </ul>
             </div>  
             <div class="btnWrapper">
                 <form action="#" method="post">
-                    <!-- {% csrf_token %} -->
-                   <input type="text" name="slug" value="{{file.slug}}" hidden>
-                   <button type="submit">Download</button>
+                    {% csrf_token %}
+                    <input type="text" name="slug" value="{{file.slug}}" hidden>
+                    <button type="submit">Download</button>
                 </form>
             </div>
         </section>
-        <!-- {% else %}
+        {% else %}
         
-        {% endif %} -->
+        {% endif %}
     </main>
 </body>
 </html>
