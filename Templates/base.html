@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing</title>
+    <link rel='stylesheet' href="/static/css/base.css"/>
+    {% block addingfiles %}
+    
+    {% endblock addingfiles %}
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>File Sharing</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/download">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block mainsection %}{% endblock mainsection %}
+    </main>
+</body>
+</html>

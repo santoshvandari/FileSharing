@@ -8,6 +8,12 @@ from main.removingFiles import RemoveAllExpiredFiles
 def home(request):
     if request.method=='POST':
         file=request.FILES['file']
+        if not file:
+            successdata={
+                'status':'error',
+                'message':'Cannot be Empty.'
+            }
+            return render(request,'index.html',successdata)
         fullfilename=file.name
         if '.' in fullfilename:
             filename=fullfilename.split('.')[0]
