@@ -9,16 +9,15 @@ def RemoveAllExpiredFiles():
     files=SharedFiles.objects.all()
     for file in files:
         if file.is_expired():
-            file.delete()
-            RemoveFile(file.filename)
+            if(RemoveFile(file.file)):
+                file.delete()
+                pass
     return True
 
 # Remove a file from the server
 def RemoveFile(filename):
-    filelocation=BASE_DIR / "media/uploads/" / filename
-    print(filelocation)
+    filelocation=str(BASE_DIR) + "/media/" + str(filename)
     if os.path.exists(filelocation):
-        print(filelocation)
         try:
             os.remove(filelocation)
             return True

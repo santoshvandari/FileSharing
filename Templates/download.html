@@ -1,24 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Sharing</title>
+{% extends "base.html" %}
+    {% block addingfiles %}
     <link rel='stylesheet' href="/static/css/download.css"/>
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <h1>File Sharing</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/download">Download</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
+    {% endblock addingfiles %}
+
+    {% block mainsection %}
         <section id="fileDownload">
             <h2>Download File</h2>
             {% if error %}
@@ -31,6 +16,4 @@
                 <button type="submit">Download</button>
             </form>
         </section>
-    </main>
-</body>
-</html>
+         {% endblock mainsection %}

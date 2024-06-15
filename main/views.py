@@ -8,6 +8,12 @@ from main.removingFiles import RemoveAllExpiredFiles
 def home(request):
     if request.method=='POST':
         file=request.FILES['file']
+        if not file:
+            successdata={
+                'status':'error',
+                'message':'Cannot be Empty.'
+            }
+            return render(request,'index.html',successdata)
         fullfilename=file.name
         if '.' in fullfilename:
             filename=fullfilename.split('.')[0]
@@ -20,7 +26,6 @@ def home(request):
                 'slug':'http://127.0.0.1:8000/d/'+slug,
                 'fileid':fileno
             }
-            print(successdata)
             return render(request,'index.html',successdata)
         except Exception as ex:
             print(ex)
@@ -28,7 +33,6 @@ def home(request):
                 'status':'error',
                 'message':'Something went wrong.'
             }
-            print(successdata)
             return render(request,'index.html',successdata)
     return render(request,'index.html')
 
@@ -37,7 +41,6 @@ def home(request):
 def download(request):
     if request.method=="POST":
         fileid = (request.POST.get("fileid")).strip()
-        print(fileid)
         if not fileid:
             return render(request,'download.html','error: File ID Cannot Be Empty')
         if fileid:
@@ -51,7 +54,7 @@ def download(request):
             elif file.is_expired():
                 # remove from teh datbase and the file from the server
                 if(RemoveAllExpiredFiles()):
-                    file.delete()
+                    return redirect("/404")
                 return redirect("/404")
             else:
                 file.file.open()
@@ -70,7 +73,6 @@ def custom404(request):
 def fileDownload(request,slug):
     if request.method=='POST':
         slug=request.POST.get('slug')
-        print(slug)
         if slug:
             try:
                 file=SharedFiles.objects.filter(slug=slug).first()
@@ -83,7 +85,7 @@ def fileDownload(request,slug):
             elif file.is_expired():
                 # remove from teh datbase and the file from the server
                 if(RemoveAllExpiredFiles()):
-                    file.delete()
+                    return redirect("/404")
                 return redirect("/404")
             else:
                 file.file.open()
@@ -94,27 +96,18 @@ def fileDownload(request,slug):
             return redirect("/404")
 
 
-    print(slug)
     if not slug:
         return redriect("/404")
     if slug:
         file=SharedFiles.objects.filter(slug=slug).first()
         if not file:
-            print("Not FIle")
             return redirect("/404")
         elif file.is_expired():
             if(RemoveAllExpiredFiles()):
-                    file.delete()
+                    return redirect("/404")
             return redirect("/404")
         else:
-            print(BASE_DIR / "/media/uploads/" / file.filename)
             return render(request,'downloadfile.html',{'file':file})
-            # file.file.open()
-            # response=HttpResponse(file.file, content_type='application/force-download')
-            # response['Content-Disposition'] = 'attachment; filename=%s' % file.filename
-            # return response
     else:
         return redirect("/404")
-
-
     return redirect('/404')
