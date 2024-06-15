@@ -10,17 +10,14 @@ def RemoveAllExpiredFiles():
     for file in files:
         if file.is_expired():
             if(RemoveFile(file.file)):
-                # file.delete()
-                print("FIle Deleted Succcessfully")
+                file.delete()
+                pass
     return True
 
 # Remove a file from the server
 def RemoveFile(filename):
-    print("File Name :" + str(filename))
-    filelocation=BASE_DIR / "media/" / filename
-    print(filelocation)
+    filelocation=str(BASE_DIR) + "/media/" + str(filename)
     if os.path.exists(filelocation):
-        print(filelocation)
         try:
             os.remove(filelocation)
             return True
