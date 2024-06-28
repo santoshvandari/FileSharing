@@ -17,7 +17,7 @@ A simple Django-based file-sharing platform where users can upload files and rec
 - Handle expired files by removing them from the server
 
 ## Usages
-You System must have the following things to use this Blog App.
+You System must have the following things to use this File Sharing App.
  - Installation of `python` and  `pip`
 
     Python is available for every platform. Download it according to you os. You can download it from [Here.](https://www.python.org/downloads/)
