@@ -46,6 +46,7 @@ main{
     align-items: center;
     justify-content: center;
     height: 100vh;
-    flex-direction: column;
+    flex-direction: row;
     gap: 50px;
+    margin-top: -70px;
 }
